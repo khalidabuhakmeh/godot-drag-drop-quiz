@@ -1,0 +1,154 @@
+[gd_scene load_steps=8 format=3 uid="uid://drovgkhwc3mjd"]
+
+[ext_resource type="Script" path="res://scripts/main.gd" id="1_ihc1s"]
+[ext_resource type="Shader" path="res://shaders/water.gdshader" id="2_r0vxy"]
+[ext_resource type="Texture2D" uid="uid://c6hw1qpkdc0oe" path="res://background.png" id="2_vxtkt"]
+[ext_resource type="Script" path="res://scripts/EndScreen.gd" id="4_hcn2u"]
+[ext_resource type="FontFile" uid="uid://csfpfu7djrwlf" path="res://JetBrainsMono-Bold.ttf" id="4_rjdqd"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_61kt0"]
+shader = ExtResource("2_r0vxy")
+shader_parameter/wave_count = 14.0
+shader_parameter/speed = 2.9
+shader_parameter/height = 0.007
+
+[sub_resource type="Theme" id="Theme_57xqa"]
+ItemList/font_sizes/font_size = 32
+OptionButton/font_sizes/font_size = 32
+PopupMenu/font_sizes/font_size = 32
+PopupMenu/fonts/font = ExtResource("4_rjdqd")
+
+[node name="Main" type="Node2D"]
+script = ExtResource("1_ihc1s")
+round_time = 31
+
+[node name="TextureRect" type="TextureRect" parent="."]
+offset_left = -50.0
+offset_top = -34.0
+offset_right = 2589.0
+offset_bottom = 1257.0
+texture = ExtResource("2_vxtkt")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+material = SubResource("ShaderMaterial_61kt0")
+offset_left = -340.0
+offset_top = -310.0
+offset_right = 2742.0
+offset_bottom = 1381.0
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+anchors_preset = 10
+anchor_right = 1.0
+offset_left = 26.0
+offset_top = 22.0
+offset_right = 2524.0
+offset_bottom = 67.0
+grow_horizontal = 2
+metadata/_edit_group_ = true
+
+[node name="HFlowContainer" type="HFlowContainer" parent="MarginContainer"]
+layout_mode = 2
+
+[node name="ScoreContainer" type="HBoxContainer" parent="MarginContainer/HFlowContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Label" type="Label" parent="MarginContainer/HFlowContainer/ScoreContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "Score:   "
+metadata/_edit_use_anchors_ = true
+
+[node name="Value" type="Label" parent="MarginContainer/HFlowContainer/ScoreContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+metadata/_edit_use_anchors_ = true
+
+[node name="CountdownContainer" type="HBoxContainer" parent="MarginContainer/HFlowContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+alignment = 1
+
+[node name="Label" type="Label" parent="MarginContainer/HFlowContainer/CountdownContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "Time Left:  "
+metadata/_edit_use_anchors_ = true
+
+[node name="Value" type="Label" parent="MarginContainer/HFlowContainer/CountdownContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+metadata/_edit_use_anchors_ = true
+
+[node name="KeymapContainer" type="HBoxContainer" parent="MarginContainer/HFlowContainer"]
+layout_mode = 2
+size_flags_horizontal = 10
+
+[node name="Label" type="Label" parent="MarginContainer/HFlowContainer/KeymapContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "Keymap:   "
+metadata/_edit_use_anchors_ = true
+
+[node name="OptionButton" type="OptionButton" parent="MarginContainer/HFlowContainer/KeymapContainer"]
+layout_mode = 2
+theme = SubResource("Theme_57xqa")
+allow_reselect = true
+
+[node name="EndScreen" type="Control" parent="."]
+visible = false
+top_level = true
+layout_mode = 3
+anchors_preset = 0
+offset_right = 2563.0
+offset_bottom = 1210.0
+script = ExtResource("4_hcn2u")
+
+[node name="ColorRect2" type="ColorRect" parent="EndScreen"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -1281.5
+offset_top = -600.0
+offset_right = 1281.5
+offset_bottom = 600.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_vertical = 3
+color = Color(0.0509804, 0.0196078, 0.0352941, 0.6)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="EndScreen"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -1276.5
+offset_top = -598.0
+offset_right = 1276.5
+offset_bottom = 598.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
+[node name="RichTextLabel" type="RichTextLabel" parent="EndScreen/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 0.0
+theme_override_font_sizes/normal_font_size = 200
+bbcode_enabled = true
+text = "[center]You Scored "
+fit_content = true
+
+[node name="Button" type="Button" parent="EndScreen/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 100
+text = "PLAY AGAIN"
+
+[connection signal="item_selected" from="MarginContainer/HFlowContainer/KeymapContainer/OptionButton" to="." method="_on_option_button_item_selected"]
+[connection signal="pressed" from="EndScreen/VBoxContainer/Button" to="." method="_on_button_pressed"]
