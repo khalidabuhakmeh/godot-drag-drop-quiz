@@ -10,4 +10,7 @@ func round_start() -> void:
 
 func round_finished() -> void:
 	$VBoxContainer/RichTextLabel.text = "[center][rainbow][wave]Final Score " + str(StateManager.score) + "!"
+	var pieces = get_tree().get_nodes_in_group("pieces")
+	for p in pieces:
+		p.queue_free()
 	visible = true

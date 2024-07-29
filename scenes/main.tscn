@@ -96,7 +96,6 @@ theme = SubResource("Theme_57xqa")
 allow_reselect = true
 
 [node name="EndScreen" type="Control" parent="."]
-visible = false
 top_level = true
 layout_mode = 3
 anchors_preset = 0
