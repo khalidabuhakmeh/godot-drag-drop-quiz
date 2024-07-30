@@ -51,7 +51,7 @@ func _process(delta) -> void:
 
 func process_keymaps() -> void:
 	var parser = XMLParser.new()
-	parser.open("keymap.xml")
+	parser.open("res://keymap.xml")
 	var current_action: Action
 	while parser.read() != ERR_FILE_EOF:
 		var node_type = parser.get_node_type()

@@ -22,119 +22,123 @@ PopupMenu/fonts/font = ExtResource("4_rjdqd")
 script = ExtResource("1_ihc1s")
 round_time = 31
 
-[node name="TextureRect" type="TextureRect" parent="."]
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer"]
 offset_left = -50.0
 offset_top = -34.0
-offset_right = 2589.0
-offset_bottom = 1257.0
+offset_right = 2443.0
+offset_bottom = 1682.0
 texture = ExtResource("2_vxtkt")
 
-[node name="ColorRect" type="ColorRect" parent="."]
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
 material = SubResource("ShaderMaterial_61kt0")
-offset_left = -340.0
-offset_top = -310.0
-offset_right = 2742.0
-offset_bottom = 1381.0
+offset_left = -78.0
+offset_top = -54.0
+offset_right = 2440.0
+offset_bottom = 1687.0
 
-[node name="MarginContainer" type="MarginContainer" parent="."]
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer"]
 anchors_preset = 10
 anchor_right = 1.0
-offset_left = 26.0
-offset_top = 22.0
-offset_right = 2524.0
-offset_bottom = 67.0
+offset_left = 49.0
+offset_top = 33.0
+offset_right = -39.0
+offset_bottom = 100.0
 grow_horizontal = 2
 metadata/_edit_group_ = true
 
-[node name="HFlowContainer" type="HFlowContainer" parent="MarginContainer"]
+[node name="HFlowContainer" type="HFlowContainer" parent="CanvasLayer/MarginContainer"]
 layout_mode = 2
+alignment = 1
 
-[node name="ScoreContainer" type="HBoxContainer" parent="MarginContainer/HFlowContainer"]
+[node name="ScoreContainer" type="HBoxContainer" parent="CanvasLayer/MarginContainer/HFlowContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="Label" type="Label" parent="MarginContainer/HFlowContainer/ScoreContainer"]
+[node name="Label" type="Label" parent="CanvasLayer/MarginContainer/HFlowContainer/ScoreContainer"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 32
 text = "Score:   "
 metadata/_edit_use_anchors_ = true
 
-[node name="Value" type="Label" parent="MarginContainer/HFlowContainer/ScoreContainer"]
+[node name="Value" type="Label" parent="CanvasLayer/MarginContainer/HFlowContainer/ScoreContainer"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 32
 metadata/_edit_use_anchors_ = true
 
-[node name="CountdownContainer" type="HBoxContainer" parent="MarginContainer/HFlowContainer"]
+[node name="CountdownContainer" type="HBoxContainer" parent="CanvasLayer/MarginContainer/HFlowContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 alignment = 1
 
-[node name="Label" type="Label" parent="MarginContainer/HFlowContainer/CountdownContainer"]
+[node name="Label" type="Label" parent="CanvasLayer/MarginContainer/HFlowContainer/CountdownContainer"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 32
 text = "Time Left:  "
 metadata/_edit_use_anchors_ = true
 
-[node name="Value" type="Label" parent="MarginContainer/HFlowContainer/CountdownContainer"]
+[node name="Value" type="Label" parent="CanvasLayer/MarginContainer/HFlowContainer/CountdownContainer"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 32
 metadata/_edit_use_anchors_ = true
 
-[node name="KeymapContainer" type="HBoxContainer" parent="MarginContainer/HFlowContainer"]
+[node name="KeymapContainer" type="HBoxContainer" parent="CanvasLayer/MarginContainer/HFlowContainer"]
 layout_mode = 2
-size_flags_horizontal = 10
+size_flags_horizontal = 3
+alignment = 2
 
-[node name="Label" type="Label" parent="MarginContainer/HFlowContainer/KeymapContainer"]
+[node name="Label" type="Label" parent="CanvasLayer/MarginContainer/HFlowContainer/KeymapContainer"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 32
 text = "Keymap:   "
 metadata/_edit_use_anchors_ = true
 
-[node name="OptionButton" type="OptionButton" parent="MarginContainer/HFlowContainer/KeymapContainer"]
+[node name="OptionButton" type="OptionButton" parent="CanvasLayer/MarginContainer/HFlowContainer/KeymapContainer"]
 layout_mode = 2
 theme = SubResource("Theme_57xqa")
 allow_reselect = true
 
-[node name="EndScreen" type="Control" parent="."]
+[node name="EndScreen" type="Control" parent="CanvasLayer"]
 top_level = true
 layout_mode = 3
 anchors_preset = 0
-offset_right = 2563.0
-offset_bottom = 1210.0
+offset_right = 2760.0
+offset_bottom = 2067.0
 script = ExtResource("4_hcn2u")
 
-[node name="ColorRect2" type="ColorRect" parent="EndScreen"]
+[node name="ColorRect2" type="ColorRect" parent="CanvasLayer/EndScreen"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -1281.5
-offset_top = -600.0
-offset_right = 1281.5
-offset_bottom = 600.0
+offset_left = -1395.0
+offset_top = -1031.5
+offset_right = 1064.0
+offset_bottom = 648.5
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_vertical = 3
 color = Color(0.0509804, 0.0196078, 0.0352941, 0.6)
 
-[node name="VBoxContainer" type="VBoxContainer" parent="EndScreen"]
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/EndScreen"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -1276.5
-offset_top = -598.0
-offset_right = 1276.5
-offset_bottom = 598.0
+offset_left = -1376.0
+offset_top = -1026.5
+offset_right = 1039.0
+offset_bottom = 615.5
 grow_horizontal = 2
 grow_vertical = 2
 alignment = 1
 
-[node name="RichTextLabel" type="RichTextLabel" parent="EndScreen/VBoxContainer"]
+[node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer/EndScreen/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
 size_flags_stretch_ratio = 0.0
@@ -143,11 +147,14 @@ bbcode_enabled = true
 text = "[center]You Scored "
 fit_content = true
 
-[node name="Button" type="Button" parent="EndScreen/VBoxContainer"]
+[node name="Button" type="Button" parent="CanvasLayer/EndScreen/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
 theme_override_font_sizes/font_size = 100
 text = "PLAY AGAIN"
 
-[connection signal="item_selected" from="MarginContainer/HFlowContainer/KeymapContainer/OptionButton" to="." method="_on_option_button_item_selected"]
-[connection signal="pressed" from="EndScreen/VBoxContainer/Button" to="." method="_on_button_pressed"]
+[node name="Camera2D" type="Camera2D" parent="."]
+anchor_mode = 0
+
+[connection signal="item_selected" from="CanvasLayer/MarginContainer/HFlowContainer/KeymapContainer/OptionButton" to="." method="_on_option_button_item_selected"]
+[connection signal="pressed" from="CanvasLayer/EndScreen/VBoxContainer/Button" to="." method="_on_button_pressed"]

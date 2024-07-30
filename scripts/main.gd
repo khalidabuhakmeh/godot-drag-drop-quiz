@@ -1,6 +1,10 @@
 extends Node2D
 
-@onready var options: OptionButton = $MarginContainer/HFlowContainer/KeymapContainer/OptionButton
+@onready var options: OptionButton = $CanvasLayer/MarginContainer/HFlowContainer/KeymapContainer/OptionButton
+@onready var score_label: Label = $CanvasLayer/MarginContainer/HFlowContainer/ScoreContainer/Value
+@onready var countdown_label: Label = $CanvasLayer/MarginContainer/HFlowContainer/CountdownContainer/Value
+@onready var end_screen = $CanvasLayer/EndScreen
+@onready var play_field = $CanvasLayer
 
 @export_range(1, 10) var total_pairs := 5:
 	get: 
@@ -33,13 +37,13 @@ func _ready() -> void:
 	pass # Replace with function body.
 
 func update_score(score: int) -> void:
-	$MarginContainer/HFlowContainer/ScoreContainer/Value.text = str(score)
+	score_label.text = str(score)
 	
 func update_timer(time: String) -> void:
-	$MarginContainer/HFlowContainer/CountdownContainer/Value.text = time
+	countdown_label.text = time
 
 func randomize_shortcuts() -> void:
-	var window_size = get_viewport().size
+	var window_size = $Camera2D.get_viewport_rect().size
 	var pieces = get_tree().get_nodes_in_group("pieces")
 	
 	# clear the current pieces
@@ -51,13 +55,13 @@ func randomize_shortcuts() -> void:
 		instance.shortcut_combo = StateManager.get_random_action()
 		instance.set_random_position(window_size)
 		instance.add_to_group("pieces")
-		add_child(instance)
+		play_field.add_child(instance)
 
 func _on_option_button_item_selected(index: int) -> void:
 	StateManager.current_layout = StateManager.layouts[index]
 	StateManager.reset()
 	randomize_shortcuts()
-	$EndScreen.visible = false
+	end_screen.visible = false
 
 func _on_button_pressed() -> void:
 	_on_option_button_item_selected(options.selected)
