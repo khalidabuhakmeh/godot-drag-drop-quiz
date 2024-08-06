@@ -1,46 +1,38 @@
-extends Area2D
+extends Control
 class_name Draggable
 
-var mouse_offset = 0
-var selected = false
-@export var locked: bool = false:
-	set(value):
-		selected = true
-		locked = true
-	get:
-		return locked
+var dropped_on_target: bool = false
+var target: Control
 
-# Called when the node enters the scene tree for the first time.
-func _ready() -> void:
-	pass # Replace with function body.
+func _get_drag_data(at_position: Vector2) -> Variant:
+	if not dropped_on_target:
+		var control = _get_preview_control(at_position)
+		set_drag_preview(control)
+		return self
+	else:
+		return null
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(_delta: float) -> void:
-	if StateManager.is_playing and selected:
-		var mouse_position = get_global_mouse_position()
-		position = mouse_position + mouse_offset;
-	if not StateManager.is_playing:
-		reset(0)
+func _can_drop_data(_at_position: Vector2, data: Variant) -> bool:
+	if data != null and data.target == self and data == self.target:
+		return true
+	else:
+		return false
 
-func _on_input_event(_viewport: Node, event: InputEvent, _shape_idx: int) -> void:
-	if StateManager.is_playing and event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT:
-		if event.pressed and not locked:
-			if StateManager.currently_dragging != null:
-				StateManager.currently_dragging.reset(0)
+func _drop_data(_at_position: Vector2, data: Variant) -> void:
+	if data != null and data.target == self and data == self.target:
+		dropped_on_target = true
+		get_parent().lock_pair()
 
-			mouse_offset = position - get_global_mouse_position()
-			z_index = 1000
-			selected = true
-			modulate.a = 0.5
-			StateManager.currently_dragging = self
-		else:
-			reset(0)
-
-func reset(new_zindex) -> void:
-	selected = false
-	modulate.a = 1
-	z_index = new_zindex
-
-func get_shape() -> Vector2:
-	var shape = $CollisionShape2D.shape
-	return shape.size
+func _get_preview_control(at_position: Vector2) -> Control:
+	var preview = Panel.new()
+	var control = self.duplicate()
+	control.position = Vector2(0, 0)
+	preview.add_child(control)
+	preview.size = size
+	preview.modulate.a = .8
+	self.modulate.a = 0.1
+	preview.set_position(at_position)
+	preview.set_rotation(.01)
+	var show_control = func(): self.modulate.a = 1
+	preview.tree_exited.connect(show_control)
+	return preview

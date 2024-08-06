@@ -28,6 +28,8 @@ var previous_time;
 	set(value):
 		layout_changed.emit(value)
 		current_layout = value
+		
+var current_solved: Array[ActionShortcutCombo]
 
 signal layout_changed(layout:Layout);
 
@@ -90,9 +92,10 @@ func get_random_action() -> ActionShortcutCombo:
 	var shorcut_in_layout = action_in_layout.shortcuts.filter(filter_shortcut_by_layout).pick_random()
 	return ActionShortcutCombo.new(action_in_layout, shorcut_in_layout)
 	
-func increment_score() -> void:
+func increment_score(shortcut_combo: ActionShortcutCombo) -> void:
 	score += POINTS;
 	var total_points_possible = total_pairs * POINTS;
+	current_solved.push_back(shortcut_combo)
 	if (score == total_points_possible):
 		is_playing = false
 		score += int(time_left * POINTS)
@@ -112,6 +115,7 @@ func tick() -> void:
 		
 func reset() -> void:
 	round_start.emit()
+	current_solved.clear()
 	is_playing = true
 	score = 0
 	time_left = round_time

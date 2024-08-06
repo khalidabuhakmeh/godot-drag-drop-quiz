@@ -1,0 +1,26 @@
+[gd_scene load_steps=3 format=3 uid="uid://b6f7vbu6jice"]
+
+[ext_resource type="Texture2D" uid="uid://ff6cfeghxy0c" path="res://Rider icon.svg" id="1_afos3"]
+
+[sub_resource type="Gradient" id="Gradient_tviun"]
+offsets = PackedFloat32Array(0.198915, 0.998192, 1)
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 0)
+
+[node name="Explosion" type="CPUParticles2D"]
+emitting = false
+amount = 20
+lifetime = 2.0
+one_shot = true
+speed_scale = 3.0
+explosiveness = 1.0
+randomness = 0.18
+lifetime_randomness = 0.22
+texture = ExtResource("1_afos3")
+spread = 180.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 100.0
+initial_velocity_max = 200.0
+angular_velocity_max = 100.0
+scale_amount_min = 0.1
+scale_amount_max = 1.25
+color_ramp = SubResource("Gradient_tviun")

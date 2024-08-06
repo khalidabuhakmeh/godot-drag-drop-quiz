@@ -147,6 +147,14 @@ bbcode_enabled = true
 text = "[center]You Scored "
 fit_content = true
 
+[node name="Shortcuts" type="RichTextLabel" parent="CanvasLayer/EndScreen/VBoxContainer"]
+layout_mode = 2
+size_flags_stretch_ratio = 0.0
+theme_override_font_sizes/normal_font_size = 64
+bbcode_enabled = true
+text = "[center]You Scored "
+fit_content = true
+
 [node name="Button" type="Button" parent="CanvasLayer/EndScreen/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 4

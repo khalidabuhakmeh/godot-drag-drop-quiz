@@ -1,129 +1,110 @@
-[gd_scene load_steps=7 format=3 uid="uid://dyji0wp26trq4"]
+[gd_scene load_steps=4 format=3 uid="uid://dyji0wp26trq4"]
 
 [ext_resource type="Script" path="res://scripts/pair.gd" id="1_0ufr2"]
 [ext_resource type="Script" path="res://scripts/Draggable.gd" id="2_chwrr"]
-[ext_resource type="Script" path="res://scripts/Key.gd" id="5_mn4ut"]
 [ext_resource type="FontFile" uid="uid://csfpfu7djrwlf" path="res://JetBrainsMono-Bold.ttf" id="5_wxwbq"]
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_b7g8k"]
-size = Vector2(385, 80)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_5pi3t"]
-size = Vector2(385, 80)
 
 [node name="Pair" type="Node2D"]
 visibility_layer = 2
 script = ExtResource("1_0ufr2")
 
-[node name="Shortcut" type="Area2D" parent="."]
+[node name="Shortcut" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
 script = ExtResource("2_chwrr")
 
-[node name="Panel" type="Node2D" parent="Shortcut"]
-
-[node name="ColorRect" type="ColorRect" parent="Shortcut/Panel"]
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -192.5
-offset_top = -40.0
-offset_right = 192.5
-offset_bottom = 40.0
+[node name="VBoxContainer" type="MarginContainer" parent="Shortcut"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -139.0
+offset_top = -22.0
+offset_right = 133.0
+offset_bottom = 24.0
 grow_horizontal = 2
 grow_vertical = 2
-mouse_filter = 1
+size_flags_horizontal = 4
+size_flags_vertical = 4
 mouse_default_cursor_shape = 2
-color = Color(0.945098, 0.513726, 0.443137, 1)
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Shortcut/Panel"]
-clip_contents = true
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -181.5
-offset_top = -25.0
-offset_right = 181.5
-offset_bottom = 25.0
-grow_horizontal = 2
-grow_vertical = 2
-mouse_default_cursor_shape = 2
-alignment = 1
-
-[node name="Label" type="Label" parent="Shortcut/Panel/VBoxContainer"]
+[node name="ColorRect" type="ColorRect" parent="Shortcut/VBoxContainer"]
 layout_mode = 2
 mouse_filter = 1
 mouse_default_cursor_shape = 2
-theme_override_colors/font_color = Color(1, 1, 1, 1)
-theme_override_fonts/font = ExtResource("5_wxwbq")
-theme_override_font_sizes/font_size = 24
-text = "SHORTCUT"
-horizontal_alignment = 1
-vertical_alignment = 1
-text_overrun_behavior = 3
+color = Color(0.630545, 0.246849, 0.876591, 1)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Shortcut"]
-shape = SubResource("RectangleShape2D_b7g8k")
+[node name="MarginContainer" type="MarginContainer" parent="Shortcut/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
 
-[node name="Key" type="Area2D" parent="."]
-disable_mode = 2
-script = ExtResource("5_mn4ut")
-
-[node name="Panel" type="Node2D" parent="Key"]
-
-[node name="ColorRect" type="ColorRect" parent="Key/Panel"]
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -192.5
-offset_top = -40.0
-offset_right = 192.5
-offset_bottom = 40.0
-grow_horizontal = 2
-grow_vertical = 2
-size_flags_horizontal = 4
-size_flags_vertical = 4
-mouse_filter = 1
-mouse_default_cursor_shape = 2
-color = Color(0, 0, 0, 1)
-
-[node name="VBoxContainer" type="VBoxContainer" parent="Key/Panel"]
-clip_contents = true
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -181.5
-offset_top = -25.0
-offset_right = 181.5
-offset_bottom = 25.0
-grow_horizontal = 2
-grow_vertical = 2
-size_flags_horizontal = 4
-size_flags_vertical = 4
-mouse_default_cursor_shape = 2
-alignment = 1
-
-[node name="Label" type="Label" parent="Key/Panel/VBoxContainer"]
+[node name="Label" type="Label" parent="Shortcut/VBoxContainer/MarginContainer"]
 layout_mode = 2
 size_flags_vertical = 3
 mouse_filter = 1
 theme_override_colors/font_color = Color(0.941176, 0.941176, 0.941176, 1)
 theme_override_fonts/font = ExtResource("5_wxwbq")
 theme_override_font_sizes/font_size = 24
-text = "KEY COMBO"
+text = "KEY COMBO This is the best thing"
 horizontal_alignment = 1
 vertical_alignment = 1
-text_overrun_behavior = 3
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Key"]
-shape = SubResource("RectangleShape2D_5pi3t")
+[node name="Key" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+script = ExtResource("2_chwrr")
+metadata/_edit_use_anchors_ = true
 
-[connection signal="input_event" from="Shortcut" to="Shortcut" method="_on_input_event"]
-[connection signal="area_entered" from="Key" to="Key" method="_on_area_entered"]
-[connection signal="input_event" from="Key" to="Key" method="_on_input_event"]
+[node name="VBoxContainer" type="MarginContainer" parent="Key"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -139.0
+offset_top = -22.0
+offset_right = 133.0
+offset_bottom = 24.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+mouse_default_cursor_shape = 2
+
+[node name="ColorRect" type="ColorRect" parent="Key/VBoxContainer"]
+layout_mode = 2
+mouse_filter = 1
+mouse_default_cursor_shape = 2
+color = Color(0, 0, 0, 1)
+
+[node name="MarginContainer" type="MarginContainer" parent="Key/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="Label" type="Label" parent="Key/VBoxContainer/MarginContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+mouse_filter = 1
+theme_override_colors/font_color = Color(0.941176, 0.941176, 0.941176, 1)
+theme_override_fonts/font = ExtResource("5_wxwbq")
+theme_override_font_sizes/font_size = 24
+text = "KEY COMBO This is the best thing"
+horizontal_alignment = 1
+vertical_alignment = 1

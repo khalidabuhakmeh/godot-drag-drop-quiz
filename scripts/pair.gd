@@ -1,7 +1,8 @@
 extends Node2D
 
-@onready var shortcut_label: Label = $Shortcut/Panel/VBoxContainer/Label
-@onready var key_label: Label = $Key/Panel/VBoxContainer/Label
+@onready var shortcut_label = $Shortcut/VBoxContainer/MarginContainer/Label
+@onready var key_label = $Key/VBoxContainer/MarginContainer/Label
+@onready var explosion = load("res://scenes/explosion.tscn")
 
 @export var shortcut_combo: ActionShortcutCombo:
 	set(value):
@@ -16,16 +17,11 @@ func _ready() -> void:
 	
 	key_label.text = shortcut_combo.key
 	shortcut_label.text = shortcut_combo.description
+	
+	$Shortcut.target = $Key
 	$Key.target = $Shortcut
-	
-	pass # Replace with function body.
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(_delta: float) -> void:
-	pass
-	
 func set_random_position(area: Vector2) -> void:
-	
 	var width = 300
 	var height = 100
 	
@@ -35,3 +31,15 @@ func set_random_position(area: Vector2) -> void:
 	# Assign the new random position
 	$Shortcut.position = random_point.call()
 	$Key.position = random_point.call()
+	
+func lock_pair():
+	StateManager.increment_score(shortcut_combo)
+	var boom: CPUParticles2D = explosion.instantiate()
+	add_child(boom)
+	boom.position = get_viewport().get_mouse_position()
+	boom.emitting = true
+	boom.z_index = 10
+	$Key.visible = false
+	$Shortcut.visible = false
+	# destroy this pair
+	boom.finished.connect(queue_free)

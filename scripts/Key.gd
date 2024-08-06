@@ -1,9 +1,13 @@
-extends Draggable
+extends Draggable 
 
 @export var target: Draggable
 
+@onready var collision_shape:CollisionShape2D = $CollisionShape2D
+@onready var control: Control = $Panel/Control
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	collision_shape.shape.extents = control.get_rect()
 	pass # Replace with function body.
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
