@@ -30,3 +30,8 @@ window/stretch/scale_mode="integer"
 [dotnet]
 
 project/assembly_name="Quiz"
+
+[rendering]
+
+renderer/rendering_method="gl_compatibility"
+renderer/rendering_method.mobile="gl_compatibility"
