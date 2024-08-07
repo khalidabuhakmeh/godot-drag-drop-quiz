@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<levels>
+	<level name="Easy">
+		<action id="ProblemsView.QuickFixes">
+			<description>Fix everything</description>
+		</action>
+		<action id="Generate">
+			<description>Generate code</description>
+		</action>
+		<action id="FindUsages" />
+		<action id="EditBreakpoint" />
+		<action id="Refactorings.QuickListPopupAction">
+			<description>Refactor</description>
+		</action>
+		<action id="SearchEverywhereActions">
+			<description>Search Everywhere</description>
+			<shortcut>Shift+Shift</shortcut>
+		</action>
+		<action id="ChooseDebugConfiguration">
+			<description>Debug</description>
+		</action>
+		<action id="StepInto" />
+	</level>
+	<level name="Medium" include="Easy">
+		<action id="QuickJavaDoc" />
+		<action id="RecentChangedFiles" />
+		<action id="ReSharperNavigateTo" />
+		<action id="RenameElement" />
+		<action id="FileStructurePopup">
+			<description>Navigate to file member</description>
+		</action>
+	</level>
+	<level name="Hard" include="Medium">
+		<action id="CheckinProject" />
+		<action id="RiderUnitTestRunSolutionAction" />
+		<action id="ReformatCode" />
+		<action id="SurroundWith" />
+		<action id="ShowSettings" />
+		<action id="SmartStepInto" />
+	</level>
+	<level name="AI" include="Easy">
+		<action id="AIAssistant.CodeGeneration.Actions.AcceptAllChanges" />
+		<action id="AIAssistant.CodeGeneration.Actions.Drop" />
+		<action id="AIAssistant.CodeGeneration.Actions.Regenerate" />
+		<action id="AIAssistant.CodeGeneration.Actions.ShowIntentionActions" />
+		<action id="AIAssistant.CodeGeneration.Actions.Specify" />
+		<action id="AIAssistant.CodeGeneration.Actions.Stop" />
+		<action id="AIAssistant.Editor.CompleteCodeWithAI" />
+		<action id="AIAssistant.Editor.GenerateCodeInplace" />]
+		<action id="AIAssistant.ToolWindow.AllChatsAction" />
+		<action id="AIAssistant.ToolWindow.Message.Dislike" />
+		<action id="AIAssistant.ToolWindow.Message.Like" />
+		<action id="AIAssistant.ToolWindow.Message.Toolbar.Assistant" />
+		<action id="AIAssistant.ToolWindow.Message.Toolbar.User" />
+		<action id="AIAssistant.ToolWindow.NewChatAction" />
+		<action id="AIAssistant.ToolWindow.ShowOrFocus" />
+		<action id="AIIntentionsActionGroup" />
+	</level>
+	<level name="Extreme">
+		<action id="*" />
+	</level>
+</levels>

@@ -1,7 +1,7 @@
 extends Node
 class_name Action
 
-@export var id:String = ""
+@export var id: String = ""
 @export var description: String = "";
 @export var shortcuts: Array[ShortcutCombo];
 
