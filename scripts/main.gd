@@ -52,7 +52,8 @@ func randomize_shortcuts() -> void:
 	
 	for i in total_pairs:
 		var instance = pair_scene.instantiate()
-		instance.shortcut_combo = StateManager.get_random_action()
+		# review: need to make sure the combos are unique
+		instance.shortcut_combo = StateManager.get_random_level_action(StateManager.current_level_name)
 		instance.set_random_position(window_size)
 		instance.add_to_group("pieces")
 		play_field.add_child(instance)
