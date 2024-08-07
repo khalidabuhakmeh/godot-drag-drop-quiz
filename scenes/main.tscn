@@ -52,6 +52,21 @@ metadata/_edit_group_ = true
 layout_mode = 2
 alignment = 1
 
+[node name="LevelsContainer" type="HBoxContainer" parent="CanvasLayer/MarginContainer/HFlowContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Label" type="Label" parent="CanvasLayer/MarginContainer/HFlowContainer/LevelsContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "Level:   "
+metadata/_edit_use_anchors_ = true
+
+[node name="OptionButton" type="OptionButton" parent="CanvasLayer/MarginContainer/HFlowContainer/LevelsContainer"]
+layout_mode = 2
+theme = SubResource("Theme_57xqa")
+allow_reselect = true
+
 [node name="ScoreContainer" type="HBoxContainer" parent="CanvasLayer/MarginContainer/HFlowContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
@@ -164,5 +179,6 @@ text = "PLAY AGAIN"
 [node name="Camera2D" type="Camera2D" parent="."]
 anchor_mode = 0
 
+[connection signal="item_selected" from="CanvasLayer/MarginContainer/HFlowContainer/LevelsContainer/OptionButton" to="." method="_on_option_button_item_selected"]
 [connection signal="item_selected" from="CanvasLayer/MarginContainer/HFlowContainer/KeymapContainer/OptionButton" to="." method="_on_option_button_item_selected"]
 [connection signal="pressed" from="CanvasLayer/EndScreen/VBoxContainer/Button" to="." method="_on_button_pressed"]

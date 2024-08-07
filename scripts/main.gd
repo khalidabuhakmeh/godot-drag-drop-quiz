@@ -1,8 +1,10 @@
 extends Node2D
 
-@onready var options: OptionButton = $CanvasLayer/MarginContainer/HFlowContainer/KeymapContainer/OptionButton
+@onready var layouts: OptionButton = $CanvasLayer/MarginContainer/HFlowContainer/KeymapContainer/OptionButton
+@onready var levels: OptionButton = $CanvasLayer/MarginContainer/HFlowContainer/LevelsContainer/OptionButton
 @onready var score_label: Label = $CanvasLayer/MarginContainer/HFlowContainer/ScoreContainer/Value
 @onready var countdown_label: Label = $CanvasLayer/MarginContainer/HFlowContainer/CountdownContainer/Value
+@onready var level_label: Label = $CanvasLayer/MarginContainer/HFlowContainer/LevelsContainer/Label
 @onready var end_screen = $CanvasLayer/EndScreen
 @onready var play_field = $CanvasLayer
 
@@ -25,9 +27,14 @@ func _ready() -> void:
 	randomize()
 	
 	for layout in StateManager.layouts:
-		options.add_item(layout.layout_name)
+		layouts.add_item(layout.layout_name)
+		
+	for level: Level in StateManager.levels:
+		levels.add_item(level.level_name)
 	
-	StateManager.current_layout = StateManager.layouts[options.selected]
+	StateManager.selected_layout = StateManager.layouts[layouts.selected]
+	StateManager.selected_level = StateManager.levels[levels.selected]
+	
 	StateManager.score_changed.connect(update_score)
 	StateManager.time_changed.connect(update_timer)
 	StateManager.reset()
@@ -53,16 +60,17 @@ func randomize_shortcuts() -> void:
 	for i in total_pairs:
 		var instance = pair_scene.instantiate()
 		# review: need to make sure the combos are unique
-		instance.shortcut_combo = StateManager.get_random_level_action(StateManager.current_level_name)
+		instance.shortcut_combo = StateManager.get_random_level_action()
 		instance.set_random_position(window_size)
 		instance.add_to_group("pieces")
 		play_field.add_child(instance)
 
-func _on_option_button_item_selected(index: int) -> void:
-	StateManager.current_layout = StateManager.layouts[index]
+func _on_option_button_item_selected(_index: int) -> void:
+	StateManager.selected_layout = StateManager.layouts[layouts.selected]
+	StateManager.selected_level = StateManager.levels[levels.selected]
 	StateManager.reset()
 	randomize_shortcuts()
 	end_screen.visible = false
 
 func _on_button_pressed() -> void:
-	_on_option_button_item_selected(options.selected)
+	_on_option_button_item_selected(0)

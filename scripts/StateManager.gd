@@ -4,10 +4,10 @@ signal score_changed(score: int)
 signal time_changed(time: String)
 signal round_finished()
 signal round_start()
+signal layout_changed(layout:Layout)
+signal level_changed(level:Level)
 
 const POINTS = 100
-
-@export var current_level_name = "Medium" # todo: make selectable
 
 @export var currently_dragging: Draggable
 @export var round_time = 61
@@ -27,22 +27,26 @@ var previous_time;
 @export var layouts: Array[Layout];
 @export var actions: Array[Action];
 @export var levels: Array[Level];
-@export var current_layout: Layout:
+@export var selected_layout: Layout:
 	set(value):
 		layout_changed.emit(value)
-		current_layout = value
-		
+		selected_layout = value
+
+@export var selected_level: Level:
+	set(value):
+		level_changed.emit(value)
+		selected_level = value
+
 var current_solved: Array[ActionShortcutCombo]
 
-signal layout_changed(layout:Layout);
+var previously_selected_keys: Array[String]
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	process_keymaps()
 	process_levels()
-	current_layout = layouts[0] # set to $default	
-	var random = get_random_level_action(current_level_name)	
-	random.print_debug()
+	selected_layout = layouts[0] # set to $default
+	selected_level = levels[0]
 	time_left = round_time
 	round_start.emit()
 	
@@ -152,15 +156,15 @@ func duplicate_action(current_action: Action) -> Action:
 	
 	return new_action
 
-func get_random_level_action(level_name: String) -> ActionShortcutCombo:
+func get_random_level_action() -> ActionShortcutCombo:
 	
-	var filter_level_by_level_name = func(s: Level):
-		return s.level_name == level_name
+	var filter_level_by_level_name = func(s: Level) -> bool:
+		return s.level_name == selected_level.level_name
 	
-	var filter_shortcut_by_layout = func(s: ShortcutCombo):
-		return s.layout_name == current_layout.layout_name
+	var filter_shortcut_by_layout = func(s: ShortcutCombo) -> bool:
+		return s.layout_name == selected_layout.layout_name
 	
-	var filter_actions_by_layout = func(s: Action):
+	var filter_actions_by_layout = func(s: Action) -> bool:
 		return s.shortcuts.any(filter_shortcut_by_layout)
 	
 	var level = levels.filter(filter_level_by_level_name)[0]
@@ -172,10 +176,20 @@ func get_random_level_action(level_name: String) -> ActionShortcutCombo:
 		var included_level = levels.filter(filter_level_by_included_level_name)[0]
 		level_actions.append_array(included_level.actions)
 	
-	var action_in_layout = level_actions.filter(filter_actions_by_layout).pick_random()
-	var shorcut_in_layout = action_in_layout.shortcuts.filter(filter_shortcut_by_layout).pick_random()
-	return ActionShortcutCombo.new(action_in_layout, shorcut_in_layout)
+	var pick_one = func() -> ActionShortcutCombo:
+		var action_in_layout = level_actions.filter(filter_actions_by_layout).pick_random()
+		var shortcut_in_layout = action_in_layout.shortcuts.filter(filter_shortcut_by_layout).pick_random()
+		return ActionShortcutCombo.new(action_in_layout, shortcut_in_layout)
 	
+	var result: ActionShortcutCombo = pick_one.call()
+	var is_unique = previously_selected_keys.find(result.key) == -1
+	while !is_unique:
+		result = pick_one.call()
+		is_unique = previously_selected_keys.find(result.key) == -1
+
+	previously_selected_keys.push_back(result.key)
+	return result
+
 func increment_score(shortcut_combo: ActionShortcutCombo) -> void:
 	score += POINTS;
 	var total_points_possible = total_pairs * POINTS;
@@ -198,8 +212,9 @@ func tick() -> void:
 		time_changed.emit(time)
 		
 func reset() -> void:
-	round_start.emit()
+	previously_selected_keys.clear()
 	current_solved.clear()
+	time_left = round_time
 	is_playing = true
 	score = 0
-	time_left = round_time
+	round_start.emit()
