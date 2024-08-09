@@ -1,8 +1,28 @@
-[gd_scene load_steps=4 format=3 uid="uid://dyji0wp26trq4"]
+[gd_scene load_steps=6 format=3 uid="uid://dyji0wp26trq4"]
 
 [ext_resource type="Script" path="res://scripts/pair.gd" id="1_0ufr2"]
 [ext_resource type="Script" path="res://scripts/Draggable.gd" id="2_chwrr"]
 [ext_resource type="FontFile" uid="uid://csfpfu7djrwlf" path="res://JetBrainsMono-Bold.ttf" id="5_wxwbq"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_pj34o"]
+bg_color = Color(0.587127, 0.512898, 1, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+shadow_color = Color(0.353438, 0.353438, 0.353438, 0.6)
+shadow_size = 1
+shadow_offset = Vector2(5, 5)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1n3w7"]
+bg_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+shadow_color = Color(1, 1, 1, 0.6)
+shadow_size = 1
+shadow_offset = Vector2(5, 5)
 
 [node name="Pair" type="Node2D"]
 visibility_layer = 2
@@ -34,11 +54,9 @@ size_flags_horizontal = 4
 size_flags_vertical = 4
 mouse_default_cursor_shape = 2
 
-[node name="ColorRect" type="ColorRect" parent="Shortcut/VBoxContainer"]
+[node name="Panel" type="Panel" parent="Shortcut/VBoxContainer"]
 layout_mode = 2
-mouse_filter = 1
-mouse_default_cursor_shape = 2
-color = Color(0.630545, 0.246849, 0.876591, 1)
+theme_override_styles/panel = SubResource("StyleBoxFlat_pj34o")
 
 [node name="MarginContainer" type="MarginContainer" parent="Shortcut/VBoxContainer"]
 layout_mode = 2
@@ -53,8 +71,8 @@ size_flags_vertical = 3
 mouse_filter = 1
 theme_override_colors/font_color = Color(0.941176, 0.941176, 0.941176, 1)
 theme_override_fonts/font = ExtResource("5_wxwbq")
-theme_override_font_sizes/font_size = 24
-text = "KEY COMBO This is the best thing"
+theme_override_font_sizes/font_size = 32
+text = "KEY COMBO This is the bes"
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -85,11 +103,9 @@ size_flags_horizontal = 4
 size_flags_vertical = 4
 mouse_default_cursor_shape = 2
 
-[node name="ColorRect" type="ColorRect" parent="Key/VBoxContainer"]
+[node name="Panel" type="Panel" parent="Key/VBoxContainer"]
 layout_mode = 2
-mouse_filter = 1
-mouse_default_cursor_shape = 2
-color = Color(0, 0, 0, 1)
+theme_override_styles/panel = SubResource("StyleBoxFlat_1n3w7")
 
 [node name="MarginContainer" type="MarginContainer" parent="Key/VBoxContainer"]
 layout_mode = 2
@@ -104,7 +120,7 @@ size_flags_vertical = 3
 mouse_filter = 1
 theme_override_colors/font_color = Color(0.941176, 0.941176, 0.941176, 1)
 theme_override_fonts/font = ExtResource("5_wxwbq")
-theme_override_font_sizes/font_size = 24
+theme_override_font_sizes/font_size = 32
 text = "KEY COMBO This is the best thing"
 horizontal_alignment = 1
 vertical_alignment = 1

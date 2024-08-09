@@ -1,14 +1,21 @@
-[gd_scene load_steps=3 format=3 uid="uid://b6f7vbu6jice"]
+[gd_scene load_steps=7 format=3 uid="uid://b6f7vbu6jice"]
 
 [ext_resource type="Texture2D" uid="uid://ff6cfeghxy0c" path="res://Rider icon.svg" id="1_afos3"]
+[ext_resource type="Script" path="res://scenes/explosion.gd" id="2_bxjgs"]
+[ext_resource type="Texture2D" uid="uid://d123mn0pn5hy4" path="res://AI Assistant icon.svg" id="2_kg2kn"]
+[ext_resource type="Texture2D" uid="uid://d36yy2kb2c4fu" path="res://ReSharper icon.svg" id="2_r53tl"]
 
 [sub_resource type="Gradient" id="Gradient_tviun"]
-offsets = PackedFloat32Array(0.198915, 0.998192, 1)
+offsets = PackedFloat32Array(0.38698, 0.998192, 1)
 colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 0)
+
+[sub_resource type="Gradient" id="Gradient_mk3tk"]
+offsets = PackedFloat32Array(0, 0.437613, 1)
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0.254973, 1, 1, 1, 0)
 
 [node name="Explosion" type="CPUParticles2D"]
 emitting = false
-amount = 20
+amount = 5
 lifetime = 2.0
 one_shot = true
 speed_scale = 3.0
@@ -24,3 +31,34 @@ angular_velocity_max = 100.0
 scale_amount_min = 0.1
 scale_amount_max = 1.25
 color_ramp = SubResource("Gradient_tviun")
+script = ExtResource("2_bxjgs")
+
+[node name="CPUParticles2D2" type="CPUParticles2D" parent="."]
+emitting = false
+amount = 10
+lifetime = 0.7
+one_shot = true
+texture = ExtResource("2_kg2kn")
+spread = 180.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 148.81
+initial_velocity_max = 639.88
+angular_velocity_max = 155.56
+scale_amount_min = 0.5
+scale_amount_max = 1.25
+color_ramp = SubResource("Gradient_mk3tk")
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="."]
+emitting = false
+amount = 10
+lifetime = 0.7
+one_shot = true
+texture = ExtResource("2_r53tl")
+spread = 180.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 148.81
+initial_velocity_max = 639.88
+angular_velocity_max = 155.56
+scale_amount_min = 0.5
+scale_amount_max = 1.25
+color_ramp = SubResource("Gradient_mk3tk")

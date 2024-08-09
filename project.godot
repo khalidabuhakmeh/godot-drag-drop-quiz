@@ -23,8 +23,7 @@ StateManager="*res://scripts/StateManager.gd"
 window/size/viewport_width=2420
 window/size/viewport_height=1668
 window/size/resizable=false
-window/stretch/mode="viewport"
-window/stretch/aspect="keep_width"
+window/stretch/mode="canvas_items"
 window/stretch/scale_mode="integer"
 
 [dotnet]

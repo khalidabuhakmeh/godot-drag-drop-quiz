@@ -37,7 +37,7 @@ func lock_pair():
 	var boom: CPUParticles2D = explosion.instantiate()
 	add_child(boom)
 	boom.position = get_viewport().get_mouse_position()
-	boom.emitting = true
+	boom.explode = true
 	boom.z_index = 10
 	$Key.visible = false
 	$Shortcut.visible = false
