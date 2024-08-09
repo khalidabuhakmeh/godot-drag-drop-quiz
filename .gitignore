@@ -2,3 +2,5 @@
 .godot/
 export/
 export.zip
+.DS_Store
+.idea

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://d123mn0pn5hy4"
-path="res://.godot/imported/AI Assistant icon.svg-a102e9ad3c8352b4fab68146f5d40512.ctex"
+uid="uid://c6hw1qpkdc0oe"
+path="res://.godot/imported/background.png-23e4ff24ed3606e496e606d42ded004c.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://AI Assistant icon.svg"
-dest_files=["res://.godot/imported/AI Assistant icon.svg-a102e9ad3c8352b4fab68146f5d40512.ctex"]
+source_file="res://images/background.png"
+dest_files=["res://.godot/imported/background.png-23e4ff24ed3606e496e606d42ded004c.ctex"]
 
 [params]
 
@@ -32,6 +32,3 @@ process/hdr_as_srgb=false
 process/hdr_clamp_exposure=false
 process/size_limit=0
 detect_3d/compress_to=1
-svg/scale=1.0
-editor/scale_with_editor_scale=false
-editor/convert_colors_with_editor_theme=false

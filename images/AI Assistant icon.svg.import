@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ff6cfeghxy0c"
-path="res://.godot/imported/Rider icon.svg-817f5f27c42e73edde536defb72086a3.ctex"
+uid="uid://d123mn0pn5hy4"
+path="res://.godot/imported/AI Assistant icon.svg-24ed2584953cedf3f5f0253b4cb8c668.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Rider icon.svg"
-dest_files=["res://.godot/imported/Rider icon.svg-817f5f27c42e73edde536defb72086a3.ctex"]
+source_file="res://images/AI Assistant icon.svg"
+dest_files=["res://.godot/imported/AI Assistant icon.svg-24ed2584953cedf3f5f0253b4cb8c668.ctex"]
 
 [params]
 

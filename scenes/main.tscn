@@ -2,9 +2,9 @@
 
 [ext_resource type="Script" path="res://scripts/main.gd" id="1_ihc1s"]
 [ext_resource type="Shader" path="res://shaders/water.gdshader" id="2_r0vxy"]
-[ext_resource type="Texture2D" uid="uid://c6hw1qpkdc0oe" path="res://background.png" id="2_vxtkt"]
+[ext_resource type="Texture2D" uid="uid://c6hw1qpkdc0oe" path="res://images/background.png" id="2_vxtkt"]
 [ext_resource type="Script" path="res://scripts/EndScreen.gd" id="4_hcn2u"]
-[ext_resource type="FontFile" uid="uid://csfpfu7djrwlf" path="res://JetBrainsMono-Bold.ttf" id="4_rjdqd"]
+[ext_resource type="FontFile" uid="uid://csfpfu7djrwlf" path="res://fonts/JetBrainsMono-Bold.ttf" id="4_rjdqd"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_61kt0"]
 shader = ExtResource("2_r0vxy")

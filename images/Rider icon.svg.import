@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://d36yy2kb2c4fu"
-path="res://.godot/imported/ReSharper icon.svg-5b70b83c88ce6c7708a8f7bf1a58fb9a.ctex"
+uid="uid://ff6cfeghxy0c"
+path="res://.godot/imported/Rider icon.svg-4f10e9e4562e0e881eebcd9df7f3ed19.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://ReSharper icon.svg"
-dest_files=["res://.godot/imported/ReSharper icon.svg-5b70b83c88ce6c7708a8f7bf1a58fb9a.ctex"]
+source_file="res://images/Rider icon.svg"
+dest_files=["res://.godot/imported/Rider icon.svg-4f10e9e4562e0e881eebcd9df7f3ed19.ctex"]
 
 [params]
 

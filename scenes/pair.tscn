@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://scripts/pair.gd" id="1_0ufr2"]
 [ext_resource type="Script" path="res://scripts/Draggable.gd" id="2_chwrr"]
-[ext_resource type="FontFile" uid="uid://csfpfu7djrwlf" path="res://JetBrainsMono-Bold.ttf" id="5_wxwbq"]
+[ext_resource type="FontFile" uid="uid://csfpfu7djrwlf" path="res://fonts/JetBrainsMono-Bold.ttf" id="3_ccaxp"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_pj34o"]
 bg_color = Color(0.587127, 0.512898, 1, 1)
@@ -70,7 +70,7 @@ layout_mode = 2
 size_flags_vertical = 3
 mouse_filter = 1
 theme_override_colors/font_color = Color(0.941176, 0.941176, 0.941176, 1)
-theme_override_fonts/font = ExtResource("5_wxwbq")
+theme_override_fonts/font = ExtResource("3_ccaxp")
 theme_override_font_sizes/font_size = 32
 text = "KEY COMBO This is the bes"
 horizontal_alignment = 1
@@ -119,7 +119,7 @@ layout_mode = 2
 size_flags_vertical = 3
 mouse_filter = 1
 theme_override_colors/font_color = Color(0.941176, 0.941176, 0.941176, 1)
-theme_override_fonts/font = ExtResource("5_wxwbq")
+theme_override_fonts/font = ExtResource("3_ccaxp")
 theme_override_font_sizes/font_size = 32
 text = "KEY COMBO This is the best thing"
 horizontal_alignment = 1

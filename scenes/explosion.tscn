@@ -1,9 +1,9 @@
 [gd_scene load_steps=7 format=3 uid="uid://b6f7vbu6jice"]
 
-[ext_resource type="Texture2D" uid="uid://ff6cfeghxy0c" path="res://Rider icon.svg" id="1_afos3"]
+[ext_resource type="Texture2D" uid="uid://ff6cfeghxy0c" path="res://images/Rider icon.svg" id="1_afos3"]
 [ext_resource type="Script" path="res://scenes/explosion.gd" id="2_bxjgs"]
-[ext_resource type="Texture2D" uid="uid://d123mn0pn5hy4" path="res://AI Assistant icon.svg" id="2_kg2kn"]
-[ext_resource type="Texture2D" uid="uid://d36yy2kb2c4fu" path="res://ReSharper icon.svg" id="2_r53tl"]
+[ext_resource type="Texture2D" uid="uid://d123mn0pn5hy4" path="res://images/AI Assistant icon.svg" id="2_kg2kn"]
+[ext_resource type="Texture2D" uid="uid://d36yy2kb2c4fu" path="res://images/ReSharper icon.svg" id="2_r53tl"]
 
 [sub_resource type="Gradient" id="Gradient_tviun"]
 offsets = PackedFloat32Array(0.38698, 0.998192, 1)
