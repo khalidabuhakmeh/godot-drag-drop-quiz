@@ -14,13 +14,14 @@ extends Node2D
 	set(value):
 		StateManager.total_pairs = value
 		
-@export var round_time = 61:
+@export var round_time := 61:
 	get:
 		return StateManager.round_time
 	set(value):
 		StateManager.round_time = value
 
 var pair_scene = preload("res://scenes/pair.tscn")
+@onready var camera = $CanvasLayer/Camera2D
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -41,8 +42,6 @@ func _ready() -> void:
 	
 	randomize_shortcuts()
 
-	pass # Replace with function body.
-
 func update_score(score: int) -> void:
 	score_label.text = str(score)
 	
@@ -50,18 +49,16 @@ func update_timer(time: String) -> void:
 	countdown_label.text = time
 
 func randomize_shortcuts() -> void:
-	var window_size = $Camera2D.get_viewport_rect().size
 	var pieces = get_tree().get_nodes_in_group("pieces")
 	
 	# clear the current pieces
 	for piece in pieces:
 		piece.queue_free()
 	
-	for i in total_pairs:
+	for i in total_pairs + 1:
 		var instance = pair_scene.instantiate()
 		# review: need to make sure the combos are unique
 		instance.shortcut_combo = StateManager.get_random_level_action()
-		instance.set_random_position(window_size)
 		instance.add_to_group("pieces")
 		play_field.add_child(instance)
 

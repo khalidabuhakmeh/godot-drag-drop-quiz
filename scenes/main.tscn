@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://drovgkhwc3mjd"]
+[gd_scene load_steps=9 format=3 uid="uid://drovgkhwc3mjd"]
 
 [ext_resource type="Script" path="res://scripts/main.gd" id="1_ihc1s"]
 [ext_resource type="Shader" path="res://shaders/water.gdshader" id="2_r0vxy"]
@@ -17,6 +17,9 @@ ItemList/font_sizes/font_size = 32
 OptionButton/font_sizes/font_size = 32
 PopupMenu/font_sizes/font_size = 32
 PopupMenu/fonts/font = ExtResource("4_rjdqd")
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7gv2g"]
+size = Vector2(2349, 1395)
 
 [node name="Main" type="Node2D"]
 script = ExtResource("1_ihc1s")
@@ -117,22 +120,18 @@ allow_reselect = true
 [node name="EndScreen" type="Control" parent="CanvasLayer"]
 top_level = true
 layout_mode = 3
-anchors_preset = 0
-offset_right = 2760.0
-offset_bottom = 2067.0
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 script = ExtResource("4_hcn2u")
 
 [node name="ColorRect2" type="ColorRect" parent="CanvasLayer/EndScreen"]
 layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -1395.0
-offset_top = -1031.5
-offset_right = 1064.0
-offset_bottom = 648.5
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_vertical = 3
@@ -145,10 +144,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -1376.0
-offset_top = -1026.5
-offset_right = 1039.0
-offset_bottom = 615.5
+offset_left = -1208.0
+offset_top = -810.0
+offset_right = 1207.0
+offset_bottom = 832.0
 grow_horizontal = 2
 grow_vertical = 2
 alignment = 1
@@ -176,7 +175,13 @@ size_flags_horizontal = 4
 theme_override_font_sizes/font_size = 100
 text = "PLAY AGAIN"
 
-[node name="Camera2D" type="Camera2D" parent="."]
+[node name="GridContainer" type="Area2D" parent="CanvasLayer" groups=["grid_container"]]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CanvasLayer/GridContainer"]
+position = Vector2(1211.5, 869.5)
+shape = SubResource("RectangleShape2D_7gv2g")
+
+[node name="Camera2D" type="Camera2D" parent="CanvasLayer" groups=["camera"]]
 anchor_mode = 0
 
 [connection signal="item_selected" from="CanvasLayer/MarginContainer/HFlowContainer/LevelsContainer/OptionButton" to="." method="_on_option_button_item_selected"]

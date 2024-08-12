@@ -20,18 +20,10 @@ func _ready() -> void:
 	
 	$Shortcut.target = $Key
 	$Key.target = $Shortcut
-
-func set_random_position(area: Vector2) -> void:
-	var width = 300
-	var height = 100
 	
-	var random_point = func() -> Vector2: 
-		return Vector2(randi_range(width, area.x - width), randi_range(height, area.y - height))
+	$Shortcut.position = StateManager.get_open_point()
+	$Key.position = StateManager.get_open_point()
 
-	# Assign the new random position
-	$Shortcut.position = random_point.call()
-	$Key.position = random_point.call()
-	
 func lock_pair():
 	StateManager.increment_score(shortcut_combo)
 	var boom: CPUParticles2D = explosion.instantiate()

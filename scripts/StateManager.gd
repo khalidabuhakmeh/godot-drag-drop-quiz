@@ -43,6 +43,7 @@ var previously_selected_keys: Array[String]
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	manage_points_on_grid()
 	process_keymaps()
 	process_levels()
 	selected_layout = layouts[0] # set to $default
@@ -212,9 +213,46 @@ func tick() -> void:
 		time_changed.emit(time)
 		
 func reset() -> void:
+	manage_points_on_grid()
 	previously_selected_keys.clear()
 	current_solved.clear()
 	time_left = round_time
 	is_playing = true
 	score = 0
 	round_start.emit()
+
+func get_open_point() -> Vector2:
+	var is_available := func(p: Node):
+		var filled = p.get_meta("filled", false)
+		return filled != null and filled == false
+		
+	var point: Node = get_tree().get_nodes_in_group("grid_points").filter(is_available).pick_random()
+	point.set_meta("filled", true)
+	return point.global_position
+
+func manage_points_on_grid() -> void:
+	var points = get_tree().get_nodes_in_group("grid_points") 	
+	if points.size() > 0:
+		for point in points :
+			point.set_meta("filled", false)
+	else:
+		var grid_container: Area2D = get_tree().get_first_node_in_group("grid_container")
+		var collision_shape = grid_container.get_node("CollisionShape2D")
+		var css = collision_shape.shape
+		var viewport = css.size
+		var start_pos_x = 350
+		var start_pos_y = 300
+		var element_size = Vector2(350, 120)
+		
+		var number_on_x_axis = floori(viewport.x / element_size.x)
+		var number_on_y_axis = floori(viewport.y / element_size.y)
+		
+		for x in number_on_x_axis:
+			for y in number_on_y_axis:
+				var point = Node2D.new()
+				var position_x = start_pos_x + (x * element_size.x)
+				var position_y = start_pos_y + (y * element_size.y)
+				point.global_position = Vector2(position_x, position_y)
+				point.set_meta("filled", false)
+				point.add_to_group("grid_points")
+				grid_container.add_child(point)

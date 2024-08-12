@@ -12,6 +12,6 @@ func _init(initial_id:String) -> void:
 func print_debug() -> void:
 	print("id: " + id + " ("+ description + ")")
 	for shortcut in shortcuts:
-		var key = shortcut.key
+		var key := shortcut.key
 		var layout = shortcut.layout
 		print("    key combo: " + key + " (" + layout + ")")
